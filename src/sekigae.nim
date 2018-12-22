@@ -3,7 +3,7 @@ import sekigae/submodule
 
 let configPaths = [
   ".sekigae.json",
-  getConfigDir() & &"/sekigae/config.json"
+  getConfigDir() & "/sekigae/config.json"
   ]
 
 # デフォルト座席

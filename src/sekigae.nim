@@ -45,7 +45,5 @@ when isMainModule:
 
   let newSheets = sheets.makeSheets(ids)
   for sheet in newSheets:
-    var line: string
-    for s in sheet:
-      line.add("| " & align(s, maxIdLen) & " ")
+    let line = sheet.mapIt("| " & it.align(maxIdLen) & " ").join()
     echo line, "|"

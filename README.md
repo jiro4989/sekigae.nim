@@ -89,5 +89,8 @@ sekigae
 ## インストール
 
 1. GitHubReleaseからダウンロードする
+
+あるいは
+
 1. リポジトリを落としてきて`nimble install`
    1. **※Linux環境用のバイナリしか生成していない**

@@ -5,6 +5,8 @@
 
 ## 使い方
 
+### 単純に使う
+
 ```bash
 sekigae
 ```
@@ -16,5 +18,58 @@ sekigae
 
 実行するたび席が変わる。
 
-席のパターンを自由に変更できるように設定ファイル化もできるけれど
-飽きたからここまでにした。
+### 設定ファイルを使う
+
+コマンド実行ディレクトリに`.sekigae.json`、
+あるいは`$HOME/.config/sekigae/config.json`があれば、
+そこから席やIDを読み込める。
+
+例として`.sekigae.json`を以下に記載。
+
+```json
+{
+  "sheets":[
+    [false, false, true, true, false, false],
+    [true, true, true, true, true, true],
+    [true, true, true, true, true, true],
+    [true, true, true, true, true, true]
+  ],
+  "ids":[
+    "tanaka",
+    "yamada",
+    "suzuki",
+    "inoue",
+    "hogeyama",
+    "ueda",
+    "ikeda",
+    "umeda",
+    "ponkichi",
+    "kita",
+    "nishi",
+    "higashi",
+    "minami",
+    "shibuya",
+    "tokyo",
+    "akihabara",
+    "osaka",
+    "kyoto",
+    "ibaraki",
+    "kumamoto",
+    "aomori",
+    "hokaido"
+  ]
+}
+```
+
+実行
+
+```
+sekigae
+```
+
+結果
+
+    |           |           |    tanaka |   higashi |           |           |
+    |     ikeda |     tokyo |      ueda |     nishi |  hogeyama |  ponkichi |
+    |    minami |   ibaraki |      kita |  kumamoto |    suzuki |   shibuya |
+    |     umeda |   hokaido |     osaka |     kyoto |    aomori | akihabara |

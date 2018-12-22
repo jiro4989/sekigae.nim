@@ -1,4 +1,4 @@
-import random, strformat, os, ospaths, json, sequtils, strutils
+import random, strformat, os, ospaths, json, sequtils, strutils, logging
 import sekigae/submodule
 
 let configPaths = [
@@ -22,14 +22,21 @@ type Config = object
   ids: seq[string]
 
 when isMainModule:
+  let loggerHandler = newConsoleLogger(lvlInfo, fmtStr = "$datetime [$levelname]$appname:")
+  addHandler(loggerHandler)
+
   # 設定ファイルがあれば読み込む
   for configPath in configPaths:
     if existsFile(configPath):
-      let jsonNode = configPath.readFile().parseJson()
-      let config = to(jsonNode, Config)
-      sheets = config.sheets
-      ids = config.ids
-      break
+      try:
+        let jsonNode = configPath.readFile().parseJson()
+        let config = to(jsonNode, Config)
+        sheets = config.sheets
+        ids = config.ids
+        break
+      except:
+        error &"設定ファイル({configPath})の読み込みに失敗しました。書式を確認してください。"
+        quit 1
 
   let maxIdLen = ids.mapIt(it.len).max
 

@@ -1,15 +1,16 @@
 proc changeSheets*(sheets: seq[seq[bool]], ids: openarray[string]): auto =
+  ## changeSheets は使用可能な席リストの座席にIDをセットしたリストを返す
   var
     arr: seq[seq[string]] = @[]
     i = 0
   for sheet in sheets:
-    var x: seq[string]
-    for s in sheet:
-      if s:
-        x.add(ids[i])
+    var sheetLine: seq[string]
+    for isAvailable in sheet:
+      if isAvailable:
+        sheetLine.add(ids[i])
         inc(i)
       else:
-        x.add("")
-    arr.add(x)
+        sheetLine.add("")
+    arr.add(sheetLine)
   return arr
 

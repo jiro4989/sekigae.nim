@@ -43,7 +43,7 @@ when isMainModule:
   randomize()
   ids.shuffle()
 
-  let newSheets = sheets.changeSheets(ids)
+  let newSheets = sheets.makeSheets(ids)
   for sheet in newSheets:
     var line: string
     for s in sheet:

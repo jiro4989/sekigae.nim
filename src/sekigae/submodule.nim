@@ -1,5 +1,5 @@
-proc changeSheets*(sheets: seq[seq[bool]], ids: openarray[string]): auto =
-  ## changeSheets は使用可能な席リストの座席にIDをセットしたリストを返す
+proc makeSheets*(sheets: seq[seq[bool]], ids: openarray[string]): auto =
+  ## makeSheets は使用可能な席リストの座席にIDをセットしたリストを返す
   var
     arr: seq[seq[string]] = @[]
     i = 0

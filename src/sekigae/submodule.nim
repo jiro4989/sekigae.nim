@@ -10,5 +10,3 @@ proc makeSheets*(sheets: seq[seq[bool]], ids: openarray[string]): seq[seq[string
       else:
         sheetLine.add("")
     result.add(sheetLine)
-  return result
-

@@ -1,8 +1,6 @@
-proc makeSheets*(sheets: seq[seq[bool]], ids: openarray[string]): auto =
+proc makeSheets*(sheets: seq[seq[bool]], ids: openarray[string]): seq[seq[string]] =
   ## makeSheets は使用可能な席リストの座席にIDをセットしたリストを返す
-  var
-    arr: seq[seq[string]] = @[]
-    i = 0
+  var i = 0
   for sheet in sheets:
     var sheetLine: seq[string]
     for isAvailable in sheet:
@@ -11,6 +9,6 @@ proc makeSheets*(sheets: seq[seq[bool]], ids: openarray[string]): auto =
         inc(i)
       else:
         sheetLine.add("")
-    arr.add(sheetLine)
-  return arr
+    result.add(sheetLine)
+  return result
 

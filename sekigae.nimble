@@ -36,5 +36,5 @@ task archive, "配布用に圧縮する":
 
 task release, "GitHubにリリースする":
   exec "nimble test"
-  exec "nimible archive"
+  exec "nimble archive"
   exec &"ghr v{version} {distDir}/"

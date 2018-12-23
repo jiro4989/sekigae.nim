@@ -1,7 +1,7 @@
 # Package
 
 packageName = "sekigae"
-version     = "1.0.3"
+version     = "1.0.4"
 author      = "jiro4989"
 description = "席替えプログラム"
 license     = "MIT"
@@ -26,13 +26,16 @@ task run, "バイナリをビルドする":
 
 task archive, "配布用に圧縮する":
   exec "nimble build"
-  let archiveDir = &"{distDir}/{packageName}_v{version}"
+  let
+    pack = &"{packageName}_v{version}"
+    archiveDir = &"{distDir}/{pack}"
   rmdir distDir
   mkdir distDir
   mkdir archiveDir
   cpFile binbin, &"{archiveDir}/{packageName}"
   cpFile "README.md", &"{archiveDir}/README.md"
-  exec &"tar czf {archiveDir}.tar.gz {archiveDir} -C {distDir}"
+  withDir distDir:
+    exec &"tar czf {pack}.tar.gz {pack}"
 
 task release, "GitHubにリリースする":
   exec "nimble test"

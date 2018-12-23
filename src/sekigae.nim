@@ -22,15 +22,13 @@ type Config = object
   ids: seq[string]
 
 when isMainModule:
-  let loggerHandler = newConsoleLogger(lvlInfo, fmtStr = "$datetime [$levelname]$appname:")
-  addHandler(loggerHandler)
+  newConsoleLogger(lvlInfo, fmtStr = "$datetime [$levelname]$appname:").addHandler()
 
   # 設定ファイルがあれば読み込む
   for configPath in configPaths:
     if existsFile(configPath):
       try:
-        let jsonNode = configPath.readFile().parseJson()
-        let config = to(jsonNode, Config)
+        let config = configPath.readFile().parseJson().to(Config)
         sheets = config.sheets
         ids = config.ids
         break
